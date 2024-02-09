@@ -1,6 +1,6 @@
 ## MMR - Data Modelling - Higor Kirchermair
 
-From the raw tables provided it was developed a pipeline of data modelling in DBT to create a refined table that will be connected to the BI analysis.
+From the raw tables provided it was developed a pipeline of data modelling in DBT to create a refined table that will be connected to the BI.
 
 - **Part 1**: BigQuery Initial Treatment Procedures
 - **Part 2**: DBT Data Modeling Code
