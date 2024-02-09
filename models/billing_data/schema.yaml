@@ -1,0 +1,55 @@
+version: 2
+
+sources:
+  - name: billing_data
+    database: ae-hiring-challenge-project1
+    loader: external
+    schema: billing_data
+    tables:
+      - name: invoice
+        description: table containing the IDs of Invoices and corresponding ID of a Customer
+        columns:
+          - name: invoice_id
+
+      - name: invoice_item
+        description: Table containing information about invoice items and the invoice they are attached to
+        columns:
+          - name: id
+              
+      - name: currency_conversion
+        description: Table containing information about currency conversion (Google Sheets Connected)
+
+models:
+  - name: MRR_refined
+    description: Table containing granular data to support MRR metrics visualizations - all dimensions and segments available
+    columns:
+      - name: id
+        description: "The primary key for this table"
+      - name: invoice_id
+        description: "The Invoice ID"
+      - name: item_id
+        description: "The Item ID"
+      - name: amount_daily_eur
+        description: "The granular amount metric converted to EUR"
+      - name: currency_original
+        description: "The Original currency of the purchase"
+      - name: amount_original
+        description: "The Original Totla amount of the purchase"
+      - name: customer_id
+        description: "The unique customer ID"
+      - name: _synced
+        description: "The date the data was last loaded"
+      - name: subscription_date
+        description: "The granular date of the subscription (based on period start-end)"
+      - name: week_num
+        description: "The week num of subscription date"
+      - name: week_date_monday
+        description: "The week date - always the monday date"
+      - name: year
+        description: "The year of the subscription date"
+      - name: quarter
+        description: "The quarter of the subscription date"
+      - name: day_of_month
+        description: "The day (of month) of the subscription date"
+      - name: day_of_week
+        description: "The day (of week) of the subscription date"
