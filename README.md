@@ -16,7 +16,7 @@ From the raw tables provided it was developed a pipeline of data modelling in DB
 
 It was followed a granular modelling strategy, **MRR_refined** Model in DBT that builds a by-day records for each pair invoice-item that extends from the period start to period end. For example: A unique subscription that lasts for **30 days** will have a **total amount/30** daily average value so to be able to build the BI from the different segmentations we want. From the **most granular (day - customer - item)** to the **most grouped (year - quarter)**.
 
-The analytical table increase in row size and the query efficiency was improved with partitioning by day - where BI will use to filter the desired period to not use the whole table - and the ingestion is being developed with incremental strategy, so each run we do an update of the registries instead of recreated the table every time.
+The analytical table increase in row size and the query efficiency was improved with partitioning by day (subscription date) - where BI will use to filter the desired period to not use the whole table - and the ingestion is being developed with incremental strategy, so each run we do an update of the registries instead of recreated the table every time.
 
 ```python
     config(
