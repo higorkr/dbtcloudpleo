@@ -6,7 +6,16 @@ config-version: 2
 # Configs
 models:
   MMR_in_EUR:
-    billing_data:
+    intermediate:
+      +persist_docs: # To persist with table Description and column Description
+        relation: true
+        columns: true
+    marts:
+      +persist_docs: # To persist with table Description and column Description
+        relation: true
+        columns: true
+    staging:
+      +materialized: view
       +persist_docs: # To persist with table Description and column Description
         relation: true
         columns: true

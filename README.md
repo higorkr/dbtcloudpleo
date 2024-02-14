@@ -2,19 +2,17 @@
 
 From the raw tables provided it was developed a pipeline of data modelling in DBT to create a refined table that will be connected to the BI.
 
-- **Part 1**: BigQuery Initial Treatment Procedures
+- **Part 1**: Staging and Intermediate Layers and Macros
 - **Part 2**: DBT Data Modeling Code
 - **Part 3**: DBT Data Quality Tests
 
-## Part 1 - Pre Processing
+## Part 1
 
-- **Table 1**: SQL procedure [billing_data_invoice.sql](billing_data_invoice.sql) for improving source table columns names.
-- **Table 2**: SQL procedure [billing_data_invoice_item.sql](billing_data_invoice_item.sql) for making source table partitioned for later incremental ingestion.
-- **Table 3**: Conversion values coming from an interface that can be easily updated and reflect directly in the Data Warehouse with no extra work ([Google Sheets](https://docs.google.com/spreadsheets/d/1CUUtUdnuPlH4g4a3AZ4ZWlcE_8nT1KFKyu0Q70V-OS0/edit#gid=0)).
+- **For Staging** layer we created two views for mapping the sources, formatting dates and improving column names readability. In **Intermediate** layer we created some extra transformations using a **macro** that will convert different currencies to a normalized amount in EUR. 
 
 ## Part 2 - DBT Modelling
 
-It was followed a granular modelling strategy, **MRR_refined** Model in DBT that builds a by-day records for each pair invoice-item that extends from the period start to period end. For example: A unique subscription that lasts for **30 days** will have a **total amount/30** daily average value so to be able to build the BI from the different segmentations we want. From the **most granular (day - customer - item)** to the **most grouped (year - quarter)**.
+It was followed a granular modelling strategy, **[subscription_mmr_per_day.sql](models/marts/subscription_mmr_per_day.sql)** Model in DBT that builds a by-day records for each pair invoice-item that extends from the period start to period end. For example: A unique subscription that lasts for **30 days** will have a **total amount/30** daily average value so to be able to build the BI from the different segmentations we want. From the **most granular (day - customer - item)** to the **most grouped (year - quarter)**.
 
 The analytical table increase in row size and the query efficiency was improved with partitioning by day (subscription date) - where BI will use to filter the desired period to not use the whole table - and the ingestion is being developed with incremental strategy, so each run we do an update of the registries instead of recreated the table every time.
 
