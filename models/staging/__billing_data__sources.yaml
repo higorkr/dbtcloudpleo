@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: billing_data
+    database: ae-hiring-challenge-project1
+    loader: external
+    schema: billing_data
+    tables:
+      - name: invoice
+        description: table containing the IDs of Invoices and corresponding ID of a Customer
+        columns:
+          - name: invoice_id
+
+      - name: invoice_item
+        description: Table containing information about invoice items and the invoice they are attached to
+        columns:
+          - name: id
+              
+      - name: currency_conversion
+        description: Table containing information about currency conversion (Google Sheets Connected)

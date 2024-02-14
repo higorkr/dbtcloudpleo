@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_billing_data__invoice_item
+    description: Table for converting sources into views and Casting Types.
+    columns:
+      - name: type
+        description: "The Purchase Type"
+      - name: period_end_ts
+        description: "The TS of the Purchase period end"
+      - name: period_end_day
+        description: "The day of the Purchase period end"
+      - name: period_start_day
+        description: "The day of the Purchase period start"
+      - name: period_start_ts
+        description: "The TS of the Purchase period start"
+      - name: amount
+        description: "The amount of the Purchase"
+      - name: currency
+        description: "The original currency of the Purchase"
+      - name: _synced
+        description: "The date the data was last loaded"
+      - name: invoice_id
+        description: "The Invoice ID"
+      - name: id
+        description: "The primary key for this table"
+
+  - name: stg_billing_data__invoice
+    description: Table for converting sources into views and Casting Types.
+    columns:
+      - name: invoice_id
+        description: "Primary key. ID of an invoice"
+      - name: invoice_id
+        description: "Foreign key. ID of a customer"

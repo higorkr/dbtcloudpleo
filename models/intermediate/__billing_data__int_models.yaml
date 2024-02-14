@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: int_billing_data__invoice_item
+    description: Table for applying EUR Macro conversion.
+    columns:
+      - name: type
+        description: "The Purchase Type"
+      - name: period_end_ts
+        description: "The TS of the Purchase period end"
+      - name: period_end_day
+        description: "The day of the Purchase period end"
+      - name: period_start_day
+        description: "The day of the Purchase period start"
+      - name: period_start_ts
+        description: "The TS of the Purchase period start"
+      - name: period_diff
+        description: "Days from Period Start to Period End, same date counts as one day"
+      - name: amount
+        description: "The amount of the Purchase"
+      - name: currency
+        description: "The original currency of the Purchase"
+      - name: amount_in_eur
+        description: "The amount of the Purchase converted to EUR"
+      - name: _synced
+        description: "The date the data was last loaded"
+      - name: invoice_id
+        description: "The Invoice ID"
+      - name: id
+        description: "The primary key for this table"
